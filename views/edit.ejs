@@ -1,0 +1,66 @@
+<%- include('../layouts/header.ejs')%>
+        
+
+<div class="registration-form">
+    <% if(success.length) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> <%= success %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+  
+        <% if(error.length) {%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Hey!</strong> <%= error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% } %>
+
+  
+    
+    <form method="post" action="/update" enctype="multipart/form-data" >
+        <div class="form-group">
+            <h3 style="text-align: center;"> ADD DATA </h3>
+       
+        
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control item" id="name" name="name" value="<%= user_details.name %>" >
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control item" id="email" name="email" value="<%= user_details.email %>">
+        </div>
+        <div class="form-group">
+            <input type="age" class="form-control item" id="age" name="age"  value="<%=user_details.age %>" >
+        </div>
+        <input type="hidden" name="id" value="<%= user_details._id %>">
+        <div class="form-group">
+            <label>image</label>
+            <input type="file" class="form-control item" name="image" id="image" class="form-control">
+        </div>
+        <div class="form-group">
+            <label> Document </label>
+            <input type="file" class="form-control item" name="document" id="document" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label> Existing Image </label>
+            <img src="/uploads/my_images/<%= user_details.image %>" width="100px" height="100px" alt=""  srcset="">
+            <label> Existing Document </label>
+            <embed src="/uploads/my_documents/<%= user_details.document%>"  width="100px" height="100px"  frameborder="0">
+        </div>
+
+     
+    
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-block create-account">submit</button>
+        </div>
+      
+    </form>
+
+    <%- include('../layouts/footer.ejs')%>
